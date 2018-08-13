@@ -422,6 +422,7 @@ class BaseModel extends Eloquent
 		$exclude = array(
 			'AddressFunctionsTrait',
 			'Ability',
+			'AbilitiesCollection',
 			'BaseModel',
 			'helpers',
 			'BillingLogger',

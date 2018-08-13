@@ -41,14 +41,14 @@ class RoleController extends BaseController
 		Bouncer::refresh();
 
 		$view = parent::edit($id);
-
 		$data = $view->getData();
-		$actions = AbilityController::getCrudActions();
-		$roleAbilities = AbilityController::mapCustomAbilities($data['view_var']->getAbilities()) ;
-		$roleForbiddenAbilities = AbilityController::mapCustomAbilities($data['view_var']->getForbiddenAbilities());
 
-		$customAbilities = AbilityController::getCustomAbilities();
-		$modelAbilities = AbilityController::getModelAbilities($data['view_var']);
+		$actions = Ability::getCrudActions();
+		$customAbilities = CustomAbilityController::view();
+		$modelAbilities = ModelAbilityController::getAll($data['view_var']);
+
+		$roleAbilities = $data['view_var']->getAbilities()->custom();
+		$roleForbiddenAbilities = $data['view_var']->getForbiddenAbilities()->custom();
 
 		return $view->with(compact('roleAbilities', 'roleForbiddenAbilities', 'modelAbilities', 'customAbilities', 'actions'));
 	}

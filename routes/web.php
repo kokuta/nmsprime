@@ -66,13 +66,13 @@ BaseRoute::group([], function() {
 
 	BaseRoute::post('Role/customAbility', [
 		'as' => 'customAbility.update',
-		'uses' => 'Auth\AbilityController@updateCustomAbility',
+		'uses' => 'Auth\CustomAbilityController@update',
 		'middleware' => ["can:update,App\Role"],
 	]);
 
 	BaseRoute::post('Role/modelAbility', [
 		'as' => 'modelAbility.update',
-		'uses' => 'Auth\AbilityController@updateModelAbility',
+		'uses' => 'Auth\ModelAbilityController@update',
 		'middleware' => ["can:update,App\Role"],
 	]);
 });
