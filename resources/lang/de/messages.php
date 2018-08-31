@@ -112,7 +112,6 @@ return [
     'Phonenumbers List'			=> 'Telefonnummernliste',
     'Postcode'					=> 'Postleitzahl',
     'Prefix Number'				=> 'Vorwahl',
-	'preeq_error'				=> 'Vorverzerrungskoeffizient nicht gefunden',
     'Price'						=> 'Preis',
     'Public CPE'				=> 'Öffentliches CPE',
     'QoS next month'			=> 'QoS nächsten Monat',
@@ -471,4 +470,5 @@ return [
     'Type'                      => 'Typ',
     'Assigned users'            => 'Zugewiesene Nutzer',
     'active contracts'          => 'Aktive Verträge',
+    'preeq_error'               => 'Vorverzerrungskoeffizient nicht gefunden',
 ];
