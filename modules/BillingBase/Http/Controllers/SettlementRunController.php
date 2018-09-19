@@ -8,7 +8,7 @@ use Modules\BillingBase\Entities\Invoice;
 use Modules\BillingBase\Entities\Salesman;
 use Modules\BillingBase\Console\cdrCommand;
 use Modules\BillingBase\Entities\SettlementRun;
-use Modules\BillingBase\Console\accountingCommand;
+use Modules\BillingBase\Console\SettlementRunCommand;
 use Modules\BillingBase\Entities\AccountingRecord;
 
 class SettlementRunController extends \BaseController
@@ -60,7 +60,7 @@ class SettlementRunController extends \BaseController
     /**
      * Extends generic edit function from Basecontroller for own view
      * Removes Rerun Button when next month has begun
-     * passes logs dependent of execution status of accountingCommand
+     * passes logs dependent of execution status of SettlementRunCommand
      *
      * @return View
      */
@@ -69,7 +69,7 @@ class SettlementRunController extends \BaseController
         $logs = $failed_jobs = [];
         $sr = SettlementRun::find($id);
         $bool = true;
-        $job_queued = \DB::table('jobs')->where('payload', 'like', '%accountingCommand%')->get();
+        $job_queued = \DB::table('jobs')->where('payload', 'like', '%SettlementRunCommand%')->get();
         $job_queued = $job_queued->isNotEmpty() ? $job_queued[0] : null;
 
         if ($job_queued || date('m') != $sr->created_at->__get('month') || $sr->verified) {
@@ -107,7 +107,7 @@ class SettlementRunController extends \BaseController
     }
 
     /**
-     * Check State of Job "accountingCommand"
+     * Check State of Job "SettlementRunCommand"
      * Send Reload info when job has finished
      *
      * @return 	response 	Stream
@@ -261,7 +261,7 @@ class SettlementRunController extends \BaseController
      * This function removes all "old" files and DB Entries created by the previous called accounting Command
      * This is necessary because otherwise e.g. after deleting contracts the invoice would be kept and is still
      * available in customer control center
-     * Used in: SettlementRunObserver@deleted, accountingCommand
+     * Used in: SettlementRunObserver@deleted, SettlementRunCommand
      *
      * USE WITH CARE!
      *
@@ -271,7 +271,7 @@ class SettlementRunController extends \BaseController
      */
     public static function directory_cleanup($settlementrun = null, $sepaacc = null)
     {
-        $dir = accountingCommand::get_relative_accounting_dir_path();
+        $dir = SettlementRunCommand::get_relative_accounting_dir_path();
         $start = $settlementrun ? date('Y-m-01 00:00:00', strtotime($settlementrun->created_at)) : date('Y-m-01');
         $end = $settlementrun ? date('Y-m-01 00:00:00', strtotime('+1 month', strtotime($settlementrun->created_at))) : date('Y-m-01', strtotime('+1 month'));
 
