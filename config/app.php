@@ -171,6 +171,8 @@ return [
         Intervention\Validation\ValidationServiceProvider::class,
         Acme\html\HtmlServiceProvider::class,
         Silber\Bouncer\BouncerServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ],
 
     /*
@@ -236,6 +238,7 @@ return [
         'ChannelLog' => Acme\log\ChannelLog::class,
         'Module' => Nwidart\Modules\Facades\Module::class,
         'Bouncer' => Silber\Bouncer\BouncerFacade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
