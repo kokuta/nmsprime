@@ -473,4 +473,5 @@ return [
     'Assigned users'            => 'Assigned users',
     'active contracts'          => 'Active contracts',
     'support'                   => 'Support',
+    'log_msg_descr'             => 'Klick to see log message descriptions',
 ];

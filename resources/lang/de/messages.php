@@ -473,4 +473,5 @@ return [
     'Assigned users'            => 'Zugewiesene Nutzer',
     'active contracts'          => 'Aktive Verträge',
     'support'                   => 'Hilfe',
+    'log_msg_descr'             => 'Zeige Beschreibungen zu den Logeinträgen',
 ];
